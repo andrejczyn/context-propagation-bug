@@ -1,7 +1,6 @@
 package com.andrejczyn
 
 import io.opentelemetry.api.trace.Span
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -23,10 +22,9 @@ class LogController {
     val logger = KotlinLogging.logger {}
 
     @GetMapping("/")
-    suspend fun log2() = coroutineScope {
+    suspend fun log2() {
         logger.info { "Before ${Thread.currentThread().name} ${Span.current()}" }
         delay(10)
-        val currentSpanAfter = Span.current()
         logger.info { "After ${Thread.currentThread().name} ${Span.current()}" }
     }
 }
