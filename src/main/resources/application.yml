@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: "demo"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#  config: classpath:logback-json.xml
