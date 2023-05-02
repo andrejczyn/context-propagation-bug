@@ -24,10 +24,9 @@ class LogController {
 
     @GetMapping("/")
     suspend fun log2() = coroutineScope {
-        val currentSpanBefore = Span.current()
-        logger.info { "Before ${Thread.currentThread().name} $currentSpanBefore" }
+        logger.info { "Before ${Thread.currentThread().name} ${Span.current()}" }
         delay(10)
         val currentSpanAfter = Span.current()
-        logger.info { "After ${Thread.currentThread().name} $currentSpanAfter" }
+        logger.info { "After ${Thread.currentThread().name} ${Span.current()}" }
     }
 }
